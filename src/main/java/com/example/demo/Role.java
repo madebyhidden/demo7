@@ -1,5 +1,6 @@
 package com.example.demo;
 
 public enum Role {
-    USER;
+    USER, admin
+
 }

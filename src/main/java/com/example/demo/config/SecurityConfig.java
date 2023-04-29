@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.example.demo.config.PersonDetailsService;
@@ -25,7 +26,7 @@ public class SecurityConfig {
     @Autowired
     private DataSource dataSource;
 
-
+    @Autowired
     private PersonDetailsService personDetailsService;
 
 
@@ -42,23 +43,23 @@ public class SecurityConfig {
 //
 //    }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/registration").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/process_login")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
-                )
-                .logout((logout) -> logout.permitAll());
-
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeHttpRequests((requests) -> requests
+//                        .requestMatchers("/", "/registration").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin((form) -> form
+//                        .loginPage("/login")
+//                        .loginProcessingUrl("/process_login")
+//                        .defaultSuccessUrl("/", true)
+//                        .permitAll()
+//                )
+//                .logout((logout) -> logout.permitAll());
+//
+//        return http.build();
+//    }
 
 //    @Bean
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -84,7 +85,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
 

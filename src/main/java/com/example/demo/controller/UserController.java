@@ -27,7 +27,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") User user, Map<String, Object> model){
         Optional<User> users = repo.findByName(user.getName());
 
-        if (users != null){
+        if (users.isPresent()){
             model.put("message", "User exists");
             return "registration_form";
 

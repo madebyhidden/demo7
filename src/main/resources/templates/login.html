@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -284,7 +284,7 @@
         </div>
 
         <!-- Login Form -->
-        <form method="POST" action="/process_login">
+        <form method="POST" th:action="@{/process_login}">
             <input type="text" id="name" class="fadeIn second" name="name" placeholder="login">
             <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
