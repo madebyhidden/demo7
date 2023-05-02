@@ -33,33 +33,37 @@ public class SecurityConfig {
 //    @Bean
 ////    @Autowired
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
+//        http.csrf().disable().authorizeHttpRequests()
+//                .requestMatchers("auth/login", "/registration").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
 //                .formLogin()
-//                .loginPage("/login")
-//                .loginProcessingUrl("/")
-//                .defaultSuccessUrl("/index", true)
-//                .failureUrl("/login?error=true");
+//                .loginPage("/auth/login")
+//                .loginProcessingUrl("/process_login")
+//                .defaultSuccessUrl("/", true)
+//                .failureUrl("/login?error");
 //        return http.build();
 //
 //    }
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/", "/registration").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin((form) -> form
-//                        .loginPage("/login")
-//                        .loginProcessingUrl("/process_login")
-//                        .defaultSuccessUrl("/", true)
-//                        .permitAll()
-//                )
-//                .logout((logout) -> logout.permitAll());
-//
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/auth/login", "/registration").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin((form) -> form
+                        .loginPage("/auth/login")
+                        .loginProcessingUrl("/process_login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
+                        .failureUrl("/auth/login?error=true")
+                )
+                .logout((logout) -> logout.permitAll());
+
+        return http.build();
+    }
 
 //    @Bean
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
