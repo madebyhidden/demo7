@@ -1,13 +1,21 @@
 package com.example.demo;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired; // для связей зависимостей из всех классов
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service; // анотация для логики
 @Service
 @RequiredArgsConstructor
-public class GruzService  {
+public class GruzService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     private UserInfoRepository repository;
@@ -44,4 +52,29 @@ public class GruzService  {
 
     }
 
+    public List<User> listAllUsers() {
+        return repository.findAll();
+    }
+
+    public void deleteUser(Integer id) {
+        repository.deleteById(id);
+    }
+
+    @Transactional
+    public void addRoleAdmin(Integer id) {
+        User user = repository.findById(id).get();
+        user.getRoles().clear();
+        user.getRoles().add(Role.admin);
+        repository.save(user);
+
+    }
+
+    @Transactional
+    public void addRoleUser(Integer id) {
+        User user = repository.findById(id).get();
+        user.getRoles().clear();
+        user.getRoles().add(Role.USER);
+        repository.save(user);
+
+    }
 }

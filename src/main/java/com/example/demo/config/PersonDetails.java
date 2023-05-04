@@ -2,9 +2,13 @@ package com.example.demo.config;
 
 import com.example.demo.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class PersonDetails implements UserDetails {
 
@@ -16,7 +20,14 @@ public class PersonDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities2 = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(user.getRoles().toString()));
+        String str = authorities.toString();
+        String[] parts = str.substring(2, str.length() - 2).split(",");
+        authorities2.add(new SimpleGrantedAuthority(parts[0]));
+        System.out.println(authorities2);
+        return Collections.synchronizedCollection(authorities2);
     }
 
     @Override
