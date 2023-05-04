@@ -21,6 +21,9 @@ public class GruzService {
     private UserInfoRepository repository;
 
     @Autowired
+    private AutoblogRepo Autorepository;
+
+    @Autowired
     private GruzRepository repo;
 
 // поиск и фильтр в системе
@@ -34,8 +37,14 @@ public class GruzService {
     public void save(Gruz gruz) {
         repo.save(gruz);
     }
+    public void saveBlog(Autoblog autoblog) {
+        Autorepository.save(autoblog);
+    }
     public Gruz get(Long id) {
         return repo.findById(id).get();
+    }
+    public Autoblog getblog(Integer id) {
+        return Autorepository.findById(id).get();
     }
     public void delete(Long id) {
         repo.deleteById(id);
@@ -56,8 +65,15 @@ public class GruzService {
         return repository.findAll();
     }
 
+    public List<Autoblog> listAllAutoblog() {
+        return Autorepository.findAll();
+    }
+
     public void deleteUser(Integer id) {
         repository.deleteById(id);
+    }
+    public void deleteBlog(Integer id) {
+        Autorepository.deleteById(id);
     }
 
     @Transactional

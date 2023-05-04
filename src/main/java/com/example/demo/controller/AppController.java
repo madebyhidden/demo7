@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.example.demo.Autoblog;
 import com.example.demo.Gruz;
 import com.example.demo.GruzService;
 import com.example.demo.User;
@@ -106,6 +107,47 @@ public class AppController {
     public String error(){
         return "error";
     }
+
+
+
+    @RequestMapping("/autoblog")
+    public String viewAutoblogPage(Model model) {
+        List<Autoblog> listAutoblog = service.listAllAutoblog();
+        model.addAttribute("listAutoblog", listAutoblog);
+        return "autoblog";
+    }
+
+    @RequestMapping("/addblog")
+//    @PreAuthorize("hasAuthority('admin')")
+    public String showNewBlog(Model model) {
+        Autoblog autoblog = new Autoblog();
+        model.addAttribute("autoblog", autoblog);
+        return "addAB";
+    }
+
+    @PreAuthorize("hasAuthority('admin')")
+    @RequestMapping(value = "/saveBlog", method = RequestMethod.POST)
+    public String saveBlog(@ModelAttribute("autoblog") Autoblog autoblog) {
+        service.saveBlog(autoblog);
+        return "redirect:/autoblog";
+    }
+
+    @RequestMapping("/editblog/{id}")
+    @PreAuthorize("hasAuthority('admin')")
+    public ModelAndView showEditBlogForm(@PathVariable(name = "id") Integer id) {
+        ModelAndView mav = new ModelAndView("editAB");
+        Autoblog autoblog = service.getblog(id);
+        mav.addObject("autoblog", autoblog);
+        return mav;
+    }
+
+    @RequestMapping("/deleteblog/{id}")
+    @PreAuthorize("hasAuthority('admin')")
+    public String deleteblog(@PathVariable(name = "id") Integer id) {
+        service.deleteBlog(id);
+        return "redirect:/autoblog";
+    }
+
 }
 
 
