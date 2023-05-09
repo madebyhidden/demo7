@@ -93,7 +93,7 @@
                             Aвтоблог
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <li><a class="dropdown-item" href="/autoblog">Автоблог</a></li>
+                            <li><a class="dropdown-item" href="/restBlog">Автоблог</a></li>
                             <li><a class="dropdown-item" href="/addblog">Добавить блог</a></li>
                         </ul>
                     </li>
@@ -144,22 +144,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="gruz: ${listGruz}">
-            <th scope="row" th:text="${gruz.id}">ID отстутсвует</th>
-            <th scope="row" th:text="${gruz.name}">название отсутствует</th>
-            <th scope="row" th:text="${gruz.namesod}">содержимое отсутствует</th>
-            <th scope="row" th:text="${gruz.vivozgorod}">Город доставки отсутствует</th>
-            <th scope="row" th:text="${gruz.vivozdata}">Дата доставки отсутствует</th>
-            <th scope="row" th:text="${gruz.privozgorod}">Город отправки отсутствует</th>
-            <th scope="row" th:text="${gruz.privozdata}">Дата отправки отсутствует</th>
+        <tr th:each="restMenu: ${listRestMenu}">
+            <th scope="row" th:text="${restMenu.id}">ID отстутсвует</th>
+            <th scope="row" th:text="${restMenu.name}">название отсутствует</th>
+            <th scope="row" th:text="${restMenu.namesod}">содержимое отсутствует</th>
+            <th scope="row" th:text="${restMenu.vivozgorod}">Город доставки отсутствует</th>
+            <th scope="row" th:text="${restMenu.vivozdata}">Дата доставки отсутствует</th>
+            <th scope="row" th:text="${restMenu.privozgorod}">Город отправки отсутствует</th>
+            <th scope="row" th:text="${restMenu.privozdata}">Дата отправки отсутствует</th>
 
 
 
             <td>
-                <a th:href="@{'/edit/'+${gruz.id}}">
+                <a th:href="@{'/edit/'+${restMenu.id}}">
                     <button sec:authorize="hasAuthority('admin')" style="width: 100px; height: 38px;" type="button" class="btn btn-info">Изменить</button>
                 </a>
-                <a th:href="@{'/delete/'+${gruz.id}}">
+                <a th:href="@{'/delete/'+${restMenu.id}}">
                     <button sec:authorize="hasAuthority('admin')" style="width: 100px; height: 38px;" type="button" class="btn btn-danger">Удалить</button>
                 </a>
             </td>

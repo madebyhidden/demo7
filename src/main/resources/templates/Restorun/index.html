@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rest'o'Run</title>
+    <!-- Подключение Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
+        /* Общие стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+            background-color: #f5f5f5;
+            overflow: hidden; /* отключаем горизонтальную прокрутку */
+        }
+
+        a {
+            text-decoration: none;
+            color: #333333;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #ff5722;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Шапка сайта */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 3;
+        }
+
+        .logo {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff5722;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 4;
+        }
+
+        .menu-item {
+            position: relative;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .menu-item:hover::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff5722;
+        }
+
+        .menu-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff5722;
+        }
+
+        .menu-item.exit {
+            color: #ff5722;
+            background-color: transparent;
+            border: 2px solid #ff5722;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .menu-item.enter {
+            color: #ffffff;
+            background-color: #ff5722;
+            border: 2px solid #ff5722;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .menu-item.exit:hover {
+            background-color: #ff5722;
+            color: #ffffff;
+        }
+
+        .menu-item.enter:hover {
+            background-color: #ffffff;
+            color: #ff5722;
+        }
+
+        .menu-icons {
+            display: flex;
+            align-items: center;
+        }
+
+
+        /* Главная секция */
+        .main {
+            padding-top: 10px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            animation: food-animation 2s ease-in-out forwards;
+        }
+
+        .main2 {
+            padding-top: 10px;
+            min-height: 1vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* добавляем позиционирование для надлежащего расположения текста */
+        }
+
+        .slogan {
+            color: #ff5722;
+            font-size: 108px; /* увеличиваем размер текста в 3 раза */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1px;
+            opacity: 0; /* задаем начальную прозрачность тексту */
+            transform: translateY(10px); /* задаем начальное положение тексту */
+            animation: slogan-animation 2s ease-in-out forwards; /* запускаем анимацию */
+            position: fixed; /* добавляем позиционирование для надлежащего расположения текста */
+            z-index: 2; /* помещаем текст над картинкой */
+            text-shadow: -0 -1px 2px #FFFFFF,
+            0 -1px 2px #FFFFFF,
+            -0 1px 2px #FFFFFF,
+            0 1px 2px #FFFFFF,
+            -1px -0 2px #FFFFFF,
+            1px -0 2px #FFFFFF,
+            -1px 0 2px #FFFFFF,
+            1px 0 2px #FFFFFF,
+            -1px -1px 2px #FFFFFF,
+            1px -1px 2px #FFFFFF,
+            -1px 1px 2px #FFFFFF,
+            1px 1px 2px #FFFFFF,
+            -1px -1px 2px #FFFFFF,
+            1px -1px 2px #FFFFFF,
+            -1px 1px 2px #FFFFFF,
+            1px 1px 2px #FFFFFF;
+        }
+
+        /* Большая фотография еды */
+
+        .food img {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        /* Анимация для текста */
+        @keyframes slogan-animation {
+            from {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(100px);
+            }
+        }
+
+        /* Анимация для картинки */
+        @keyframes food-animation {
+            from {
+                transform: translateY(100px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1830px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Rest'o'Run</div>
+    <nav class="navigation">
+        <a href="/" class="menu-item active">Главная</a>
+        <a href="/news" class="menu-item">Новости</a>
+        <a href="/menu" class="menu-item">Меню</a>
+        <a href="/contacts" class="menu-item">Контакты</a>
+        <a href="/users" sec:authorize-expr="hasAuthority('admin')" class="menu-item">Админ</a>
+        <a href="/logout" sec:authorize-expr="!hasAuthority('admin') and !hasAuthority('USER')" class="menu-item enter">Войти</a>
+        <a href="/logout" sec:authorize="hasAuthority('admin') or hasAuthority('USER')" class="menu-item exit">Выход</a>
+    </nav>
+    <div class="menu-icons"></div>
+</header>
+<main class="main2">
+    <div class="container">
+        <h1 class="slogan">Еда, которая захватит твоё сердце</h1>
+    </div>
+
+    <div class="main">
+        <img src="https://goodmanfielder.com/assets/Uploads/nz-home-food-small.png" alt="Food" onload="animateImage()"/>
+    </div>
+</main>
+
+<!-- Подключение jQuery и Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    const menuIcons = document.querySelector('.menu-icons');
+    const menu = document.querySelector('.navigation');
+    const main = document.querySelector('.animate');
+
+    menuIcons.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+</script>
+<script>
+    function animateImage() {
+        const main = document.querySelector('.main');
+        main.classList.add('animate');
+    }
+</script>
+</body>
+</html>

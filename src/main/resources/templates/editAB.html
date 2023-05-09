@@ -125,7 +125,7 @@
     <blockquote class="blockquote text-center"><h1>Добавить блог</h1></blockquote>
     <div class="row">
         <div class="col-md-8 offset-md-4">
-            <form th:action="@{/saveBlog}" th:object="${autoblog}" method="post">
+            <form th:action="@{/saveBlog}" th:object="${restBlog}" method="post">
                 <table>
                     <tr>
                         <td>ID блога:</td>

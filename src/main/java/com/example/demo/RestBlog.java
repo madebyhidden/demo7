@@ -6,14 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
-@Table(name = "autoblog")
+@Table(name = "restblog")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Autoblog {
+public class RestBlog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +19,15 @@ public class Autoblog {
     private String dates;
     private String text;
 
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;

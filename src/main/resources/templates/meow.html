@@ -125,14 +125,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="gruz: ${listGruz}">
-      <th scope="row" class="text-white" th:text="${gruz.id}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.name}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.namesod}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.vivozgorod}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.vivozdata}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.privozgorod}"></th>
-      <th scope="row" class="text-white" th:text="${gruz.privozdata}"></th>
+    <tr th:each="restMenu: ${listRestMenu}">
+      <th scope="row" class="text-white" th:text="${restMenu.id}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.name}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.namesod}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.vivozgorod}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.vivozdata}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.privozgorod}"></th>
+      <th scope="row" class="text-white" th:text="${restMenu.privozdata}"></th>
     </tr>
     </tbody>
   </table>

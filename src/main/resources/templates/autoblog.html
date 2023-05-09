@@ -128,16 +128,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="autoblog: ${listAutoblog}">
-        <th scope="row" th:text="${autoblog.id}">Название отстутсвует</th>
-        <th scope="row" th:text="${autoblog.name}">Имя отсутствует</th>
-        <th scope="row" th:text="${autoblog.dates}">Дата отсутствует</th>
-        <th class="offset-md-4" th:text="${autoblog.text}">Текст отсутствует</th>
+    <tr th:each="restBlog: ${listRestBlog}">
+        <th scope="row" th:text="${restBlog.id}">Название отстутсвует</th>
+        <th scope="row" th:text="${restBlog.name}">Имя отсутствует</th>
+        <th scope="row" th:text="${restBlog.dates}">Дата отсутствует</th>
+        <th class="offset-md-4" th:text="${restBlog.text}">Текст отсутствует</th>
         <td>
-            <a th:href="@{'/editblog/'+${autoblog.id}}">
+            <a th:href="@{'/editblog/'+${restBlog.id}}">
                 <button sec:authorize="hasAuthority('admin')" style="width: 100px; height: 38px;" type="button" class="btn btn-info">Изменить</button>
             </a>
-            <a th:href="@{'/deleteblog/'+${autoblog.id}}">
+            <a th:href="@{'/deleteblog/'+${restBlog.id}}">
                 <button sec:authorize="hasAuthority('admin')" style="width: 100px; height: 38px;" type="button" class="btn btn-danger">Удалить</button>
             </a>
         </td>

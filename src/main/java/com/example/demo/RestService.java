@@ -1,7 +1,5 @@
 package com.example.demo;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -12,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service; // анотация для логики
 @Service
 @RequiredArgsConstructor
-public class GruzService {
+public class RestService {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -21,38 +19,38 @@ public class GruzService {
     private UserInfoRepository repository;
 
     @Autowired
-    private AutoblogRepo Autorepository;
+    private RestBlogRepo Autorepository;
 
     @Autowired
-    private GruzRepository repo;
+    private RestRepository repo;
 
 // поиск и фильтр в системе
-    public List<Gruz> listAll(String keyword) {
+    public List<RestMenu> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
 
         }
-        return repo.findAll(Sort.by("privozdata").descending());
+        return repo.findAll(Sort.by("ingredients").descending());
     }
-    public void save(Gruz gruz) {
-        repo.save(gruz);
+    public void save(RestMenu restMenu) {
+        repo.save(restMenu);
     }
-    public void saveBlog(Autoblog autoblog) {
-        Autorepository.save(autoblog);
+    public void saveBlog(RestBlog restBlog) {
+        Autorepository.save(restBlog);
     }
-    public Gruz get(Long id) {
+    public RestMenu get(Long id) {
         return repo.findById(id).get();
     }
-    public Autoblog getblog(Integer id) {
+    public RestBlog getblog(Integer id) {
         return Autorepository.findById(id).get();
     }
     public void delete(Long id) {
         repo.deleteById(id);
     }
-    public List<Gruz> listordered() {
-        return repo.findAll(Sort.by("privozdata").descending());
+    public List<RestMenu> listordered() {
+        return repo.findAll(Sort.by("ingredients").descending());
     }
-    public List<Gruz> listofall() {return repo.findAll();}
+    public List<RestMenu> listofall() {return repo.findAll();}
 
     public void addUser(User user) {
 
@@ -65,7 +63,7 @@ public class GruzService {
         return repository.findAll();
     }
 
-    public List<Autoblog> listAllAutoblog() {
+    public List<RestBlog> listAllRestblog() {
         return Autorepository.findAll();
     }
 

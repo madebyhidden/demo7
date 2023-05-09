@@ -127,17 +127,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="gruz: ${listGruzsort}">
-      <th scope="row" class="text-white" th:text="${gruz.id}">ID  отстутсвует</th>
-      <th scope="row" class="text-white" th:text="${gruz.name}">название отсутствует</th>
-      <th scope="row" class="text-white" th:text="${gruz.namesod}">содержимое отсутствует</th>
-      <th scope="row" class="text-white" th:text="${gruz.vivozgorod}">Город отправки отсутствует</th>
-      <th scope="row" class="text-white" th:text="${gruz.vivozdata}">Дата отправки отсутствует</th>
-      <th scope="row" class="text-white" th:text="${gruz.privozgorod}">Город доставки отсутствует</th>
-      <th scope="row" class="text-white" th:text="${gruz.privozdata}">Дата доставки отсутствует</th>
+    <tr th:each="restMenu: ${listRestSort}">
+      <th scope="row" class="text-white" th:text="${restMenu.id}">ID  отстутсвует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.bludo}">название отсутствует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.ingredients}">содержимое отсутствует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.price}">Город отправки отсутствует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.recipe}">Дата отправки отсутствует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.timeMake}">Город доставки отсутствует</th>
+      <th scope="row" class="text-white" th:text="${restMenu.bl_image}">Дата доставки отсутствует</th>
       <td>
-        <a th:href="@{'/edit/'+${gruz.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
-        <a th:href="@{'/delete/'+${gruz.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
+        <a th:href="@{'/edit/'+${restMenu.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
+        <a th:href="@{'/delete/'+${restMenu.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
       </td>
     </tr>
     </tbody>

@@ -15,7 +15,7 @@
             height: 100vh;
         }
         a {
-            color: #92badd;
+            color: #F6856CEF;
             display:inline-block;
             text-decoration: none;
             font-weight: 400;
@@ -51,7 +51,7 @@
             text-align: center;
         }
         #formFooter {
-            background-color: #f6f6f6;
+            background-color: rgba(241, 192, 182, 0.23);
             border-top: 1px solid #dce8f1;
             padding: 25px;
             text-align: center;
@@ -65,10 +65,10 @@
 
         h2.active {
             color: #0d0d0d;
-            border-bottom: 2px solid #5fbae9;
+            border-bottom: 2px solid #ff5722;
         }
         input[type=button], input[type=submit], input[type=reset]  {
-            background-color: #56baed;
+            background-color: #ff5722;
             border: none;
             color: white;
             padding: 15px 80px;
@@ -77,8 +77,8 @@
             display: inline-block;
             text-transform: uppercase;
             font-size: 13px;
-            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            -webkit-box-shadow: 0 10px 30px 0 #F6856CEF;
+            box-shadow: 0 10px 30px 0 #F6856CEF;
             -webkit-border-radius: 5px 5px 5px 5px;
             border-radius: 5px 5px 5px 5px;
             margin: 5px 20px 10px 20px;
@@ -90,14 +90,14 @@
         }
 
         input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-            background-color: #39ace7;
+            background-color: #ff5722;
         }
         input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
             -ms-transform: scale(0.95);
             transform: scale(0.95);
         }
         input[type=text] {
-            background-color: #f6f6f6;
+            background-color: rgba(241, 192, 182, 0.23);
             color: #0d0d0d;
             padding: 15px 32px;
             text-align: center;
@@ -117,14 +117,14 @@
         }
         input[type=text]:focus {
             background-color: #fff;
-            border-bottom: 2px solid #5fbae9;
+            border-bottom: 2px solid #ff5722;
         }
         input[type=text], placeholder {
             color: #cccccc;
         }
 
         input[type=password] {
-            background-color: #f6f6f6;
+            background-color: rgba(241, 192, 182, 0.23);
             color: #0d0d0d;
             padding: 15px 32px;
             text-align: center;
@@ -144,7 +144,7 @@
         }
         input[type=password]:focus {
             background-color: #fff;
-            border-bottom: 2px solid #5fbae9;
+            border-bottom: 2px solid #ff5722;
         }
         input[type=password], placeholder {
             color: #cccccc;
@@ -220,7 +220,7 @@
             bottom: -10px;
             width: 0;
             height: 2px;
-            background-color: #56baed;
+            background-color: #F6856CEF;
             content: "";
             transition: width 0.2s;
         }
@@ -260,7 +260,7 @@
 
 
         <!-- Remind Passowrd -->
-        <div id="formFooter">
+        <div id="formFooter" class="fadeIn fourth">
             <div style="color: #686868" >Новенький?</div><a class="underlineHover" href="/registration">Пройди регистрацию!</a>
         </div>
 

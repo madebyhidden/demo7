@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Rest'o'Run restaurant website">
+    <meta name="author" content="Your Name Here">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest'o'Run</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
+        /* General styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 10px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333333;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #ff5722;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Header styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff5722;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .menu-item {
+            position: relative;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .menu-item:hover::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff5722;
+        }
+
+        .menu-item.active::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff5722;
+        }
+
+        .menu-item.exit {
+            color: #ff5722;
+            background-color: transparent;
+            border: 2px solid #ff5722;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .menu-item.exit:hover {
+            background-color: #ff5722;
+            color: #ffffff;
+        }
+
+        .menu-icons {
+            display: flex;
+            align-items: center;
+        }
+
+
+        /* Main styles */
+        .main {
+            font-family: 'Montserrat', sans-serif;
+            padding-top: 10px;
+            min-height: 1vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            border: 3px solid #ff5722;
+            border-radius: 40px;
+        }
+
+        .news-item img {
+            width: auto;
+            height: auto;
+            min-width: 900px;
+            min-height: 600px;
+            max-width: 900px;
+            max-height: 600px;
+        }
+
+        @media only screen and (min-width: 900px) {
+            .news-item img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .news-item h3 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .news-item p {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .recipe-image {
+
+            border: 3px solid #ff5722;
+            border-radius: 40px;
+            align-items: center;
+
+        }
+
+        img {
+            border-radius: 14%;
+            min-height: 200px;
+        }
+
+        .recipe-details {
+            margin: 0;
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 50px;
+        }
+
+        .recipe-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .recipe-description {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .recipe-ingredients {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .recipe-time {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .recipe-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            margin: 10px 100px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">Rest'o'Run</div>
+    <nav class="navigation">
+        <a href="/" class="menu-item ">Главная</a>
+        <a href="/news" class="menu-item">Новости</a>
+        <a href="/menu" class="menu-item active">Меню</a>
+        <a href="/contacts" class="menu-item">Контакты</a>
+        <a href="/users" sec:authorize="hasAuthority('admin')" class="menu-item">Админ</a>
+        <a href="/logout" class="menu-item exit">Выход</a>
+    </nav>
+    <div class="menu-icons"></div>
+
+
+</header>
+<br>
+<br>
+<br>
+<br>
+<div class="main" th:each="restMenu: ${listRestMenu}">
+    <div class="recipe-image">
+        <img th:src="${restMenu.bl_image}" alt="Recipe Image" width="350" height="232">
+        <!--        <img src="https://e1.edimdoma.ru/data/recipes/0004/5299/45299-ed4_wide.jpg?1636554916" alt="Recipe Image" width="300" height="200">-->
+    </div>
+    <div class="recipe-details">
+        <h2 class="recipe-title" th:text="${restMenu.bludo}">Recipe Title</h2>
+        <p class="recipe-ingredients" th:text="${restMenu.ingredients}">Ingredients: Ingredient 1, Ingredient 2,
+            Ingredient 3</p>
+        <p class="recipe-time">Time to Cook: <span th:text="${restMenu.timeMake}"></span></p>
+    </div>
+    <p class="recipe-price menu-item"><span th:text="${restMenu.price}"></span>₽</p>
+
+
+    <a th:href="@{'/edit/'+${restMenu.id}}">
+        <button sec:authorize="hasAuthority('admin')" type="button" class="btn menu-item">Изменить</button>
+    </a>
+    <a th:href="@{'/delete/'+${restMenu.id}}">
+        <button sec:authorize="hasAuthority('admin')" style="width: 100px; height: 38px;" type="button"
+                class="btn btn-danger">Удалить
+        </button>
+    </a>
+</div>
+</body>
+</html>
