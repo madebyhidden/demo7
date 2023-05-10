@@ -1,12 +1,10 @@
-package com.example.demo;
+package com.example.demo.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Sort;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity

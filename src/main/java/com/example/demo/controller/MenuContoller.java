@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.ui.Model;
-import com.example.demo.RestMenu;
-import com.example.demo.RestService;
+import com.example.demo.Entity.RestMenu;
+import com.example.demo.Services.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;

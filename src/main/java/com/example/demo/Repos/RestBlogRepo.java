@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.Repos;
 
+import com.example.demo.Entity.RestBlog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

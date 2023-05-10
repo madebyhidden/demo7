@@ -2,9 +2,9 @@ package com.example.demo.controller;
 // контроллеры
 import java.util.List;
 
-import com.example.demo.RestBlog;
-import com.example.demo.RestMenu;
-import com.example.demo.RestService;
+import com.example.demo.Entity.RestBlog;
+import com.example.demo.Entity.RestMenu;
+import com.example.demo.Services.RestService;
 import org.springframework.beans.factory.annotation.Autowired; // внедряет зависимости
 import org.springframework.data.repository.query.Param; // привязываем данные к sql запросу
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +21,7 @@ public class AppController {
     private RestService service;
 
     @RequestMapping("/")
-    public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<RestMenu> listRestMenu = service.listAll(keyword);
-        model.addAttribute("listRestMenu", listRestMenu);
-        model.addAttribute("keyword", keyword);
+    public String viewHomePage() {
         return "Restorun/index";
     }
 

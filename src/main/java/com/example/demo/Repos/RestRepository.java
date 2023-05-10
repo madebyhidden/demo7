@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.Repos;
 import java.util.List;
 
+import com.example.demo.Entity.RestMenu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query; // для sql запросов
 

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Entity;
 
 import jakarta.persistence.Entity; // класс является сущностью и относится к орм jpa
 import jakarta.persistence.GeneratedValue; // указывает для автозапомлениния айдишника

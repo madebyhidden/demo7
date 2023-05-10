@@ -1,8 +1,8 @@
 package com.example.demo.config;
 
 
-import com.example.demo.User;
-import com.example.demo.UserInfoRepository;
+import com.example.demo.Entity.User;
+import com.example.demo.Repos.UserInfoRepository;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

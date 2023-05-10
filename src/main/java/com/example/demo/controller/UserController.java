@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.Role;
-import com.example.demo.User;
-import com.example.demo.RestService;
-import com.example.demo.UserInfoRepository;
+import com.example.demo.Entity.Role;
+import com.example.demo.Entity.User;
+import com.example.demo.Services.RestService;
+import com.example.demo.Repos.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

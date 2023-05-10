@@ -193,10 +193,6 @@
             margin: 0;
         }
 
-        .recipe-description {
-            font-size: 16px;
-            margin: 10px 0;
-        }
 
         .recipe-ingredients {
             font-size: 16px;
@@ -216,6 +212,13 @@
             font-weight: bold;
         }
 
+        .button{
+            border-radius: 5px;
+        }
+        .input{
+            border-radius: 20px;
+            border: 2px solid #ff5722;
+        }
 
     </style>
 </head>
@@ -236,8 +239,17 @@
 </header>
 <br>
 <br>
-<br>
-<br>
+
+<div class="row">
+    <div class="col-md-8 offset-md-4 table">
+        <form th:action="@{/menu}">
+            <input class="input" type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required placeholder="Поиск"/>
+            <input type="submit"  class="btn menu-item button" value="Поиск"/>
+            <input type="button" class="btn btn-warning menu-item button" value="Очистить" id="btnClear"
+                   onclick="clearSearch()"/>
+        </form>
+    </div>
+</div>
 <div class="main" th:each="restMenu: ${listRestMenu}">
     <div class="recipe-image">
         <img th:src="${restMenu.bl_image}" alt="Recipe Image" width="350" height="232">
@@ -262,4 +274,10 @@
     </a>
 </div>
 </body>
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/menu}]]";
+    }
+
+</script>
 </html>
