@@ -121,7 +121,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-4">
             <h4>Поиск посылки по любому критерию:</h4>
-            <form th:action="@{/}">
+            <form th:action="@{/static}">
                 <input type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
                 <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
                 <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear"

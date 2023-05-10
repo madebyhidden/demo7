@@ -30,7 +30,7 @@ public class UserController {
 
         if (users.isPresent()){
             model.put("message", "User exists");
-            return "registration_form";
+            return "auth/registration_form";
 
         }
         user.setPassword(user.getPassword());
@@ -45,9 +45,9 @@ public class UserController {
         try {
             List<User> listUsers = service.listAllUsers();
             model.addAttribute("listUsers", listUsers);
-            return "users";
+            return "Admin/users";
         } catch (NoSuchElementException e) {
-            return "error";
+            return "Admin/error";
         }
     }
 

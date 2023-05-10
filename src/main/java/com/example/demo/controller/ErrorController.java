@@ -9,7 +9,7 @@ public class ErrorController {
 
     @RequestMapping("exp/error")
     public String error(){
-        return "error";
+        return "Admin/error";
     }
 
 }
