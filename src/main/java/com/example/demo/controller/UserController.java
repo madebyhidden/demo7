@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/registration")
     public String reg(){
-        return "registration_form";
+        return "auth/registration_form";
     }
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("user") User user, Map<String, Object> model){
